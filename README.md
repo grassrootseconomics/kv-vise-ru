@@ -1,6 +1,6 @@
 # kv-vise-ru
 
-![GitHub Tag](https://img.shields.io/github/v/tag/grassrootseconomics/eth-indexer)
+![GitHub Tag](https://img.shields.io/github/v/tag/grassrootseconomics/kv-vise-ru)
 
 ## License
 
