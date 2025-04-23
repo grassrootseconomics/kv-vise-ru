@@ -17,6 +17,7 @@ type (
 	APIOpts struct {
 		EnableMetrics bool
 		ListenAddress string
+		CORS          []string
 		Logg          *slog.Logger
 		Store         store.Store
 	}
@@ -50,7 +51,7 @@ func New(o APIOpts) *API {
 		api.router.GET("/metrics", metricsHandler)
 	}
 
-	api.router.WithGroup(apiVersion, func(g *bunrouter.Group) {
+	api.router.Use(newCorsMiddleware(o.CORS)).WithGroup(apiVersion, func(g *bunrouter.Group) {
 		if os.Getenv("DEV") != "" {
 			g = g.Use(reqlog.NewMiddleware())
 		}

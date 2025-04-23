@@ -62,6 +62,7 @@ func main() {
 	apiServer := api.New(api.APIOpts{
 		EnableMetrics: ko.Bool("metrics.enable"),
 		ListenAddress: ko.MustString("api.address"),
+		CORS:          ko.MustStrings("api.cors"),
 		Store:         store,
 		Logg:          lo,
 	})

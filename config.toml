@@ -3,6 +3,7 @@ go_process = true
 
 [api]
 address = ":5059"
+cors = ["https://sarafu.network"]
 
 [postgres]
 dsn = "postgres://postgres:postgres@127.0.0.1:5432/ge_ussd"
