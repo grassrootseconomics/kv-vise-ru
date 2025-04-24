@@ -25,6 +25,7 @@ func uint16ToBytes(v uint16) []byte {
 
 func EncodeSessionID(sessionID string) []byte {
 	sessionIDBytes := []byte(sessionID)
+	sessionIDBytes = append(sessionIDBytes, dot)
 	sessionIDBytes = append([]uint8{keyPrefix}, sessionIDBytes...)
 	return sessionIDBytes
 }

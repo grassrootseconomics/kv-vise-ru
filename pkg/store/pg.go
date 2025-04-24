@@ -28,8 +28,9 @@ type (
 	}
 
 	queries struct {
-		GetSessionData string `query:"get-session-data"`
-		Get            string `query:"get"`
+		GetSessionData          string `query:"get-session-data"`
+		Get                     string `query:"get"`
+		GetProfileDetailsForSMS string `query:"get-profile-details-for-sms"`
 	}
 )
 
@@ -95,6 +96,35 @@ func (pg *Pg) GetAddress(ctx context.Context, sessionID string) (string, error) 
 		return "", err
 	}
 	return value, nil
+}
+
+func (pg *Pg) GetProfileDetailsForSMS(ctx context.Context, sessionID string) (*ProfileDetails, error) {
+	var (
+		publicKey    string
+		firstName    string
+		familyName   string
+		languageCode string
+		accountAlias string
+	)
+
+	err := pg.db.QueryRow(ctx, pg.queries.GetProfileDetailsForSMS, data.EncodeSessionID(sessionID)).Scan(
+		&publicKey,
+		&firstName,
+		&familyName,
+		&languageCode,
+		&accountAlias,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return &ProfileDetails{
+		PublicKey:    publicKey,
+		FirstName:    firstName,
+		FamilyName:   familyName,
+		LanguageCode: languageCode,
+		AccountAlias: accountAlias,
+	}, nil
 }
 
 func loadQueries(queriesPath string) (*queries, error) {
