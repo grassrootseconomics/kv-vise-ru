@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/grassrootseconomics/kv-vise-ru/internal/store"
+	"github.com/grassrootseconomics/kv-vise-ru/pkg/store"
 	"github.com/kamikazechaser/common/httputil"
 	"github.com/uptrace/bunrouter"
 	"github.com/uptrace/bunrouter/extra/reqlog"

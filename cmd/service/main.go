@@ -13,9 +13,9 @@ import (
 	"time"
 
 	"github.com/grassrootseconomics/kv-vise-ru/internal/api"
-	"github.com/grassrootseconomics/kv-vise-ru/internal/store"
 	"github.com/grassrootseconomics/kv-vise-ru/internal/util"
 	"github.com/grassrootseconomics/kv-vise-ru/pkg/data"
+	"github.com/grassrootseconomics/kv-vise-ru/pkg/store"
 	"github.com/knadh/koanf/v2"
 )
 
