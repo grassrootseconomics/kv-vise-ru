@@ -29,3 +29,8 @@ FROM
     LEFT JOIN kv_vise v3 ON v3.key = base.base_key || '\x0004'::bytea
     LEFT JOIN kv_vise v4 ON v4.key = base.base_key || '\x0013'::bytea
     LEFT JOIN kv_vise v5 ON v5.key = base.base_key || '\x0015'::bytea;
+
+-- name: address-reverse-lookup
+SELECT key, value
+FROM kv_vise
+WHERE value = convert_to($1, 'UTF8');
