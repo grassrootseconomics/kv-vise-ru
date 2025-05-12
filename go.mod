@@ -3,7 +3,7 @@ module github.com/grassrootseconomics/kv-vise-ru
 go 1.24
 
 require (
-	github.com/VictoriaMetrics/metrics v1.35.2
+	github.com/VictoriaMetrics/metrics v1.37.0
 	github.com/jackc/pgx/v5 v5.7.4
 	github.com/jackc/tern/v2 v2.3.2
 	github.com/kamikazechaser/common v1.0.1-0.20241102071235-b1d359b0e63b
