@@ -4,7 +4,7 @@ go 1.24
 
 require (
 	github.com/VictoriaMetrics/metrics v1.35.2
-	github.com/jackc/pgx/v5 v5.7.4
+	github.com/jackc/pgx/v5 v5.7.5
 	github.com/jackc/tern/v2 v2.3.2
 	github.com/kamikazechaser/common v1.0.1-0.20241102071235-b1d359b0e63b
 	github.com/knadh/goyesql/v2 v2.2.0
@@ -49,9 +49,9 @@ require (
 	github.com/valyala/histogram v1.2.0 // indirect
 	go.opentelemetry.io/otel v1.35.0 // indirect
 	go.opentelemetry.io/otel/trace v1.35.0 // indirect
-	golang.org/x/crypto v0.31.0 // indirect
+	golang.org/x/crypto v0.37.0 // indirect
 	golang.org/x/net v0.21.0 // indirect
-	golang.org/x/sync v0.10.0 // indirect
+	golang.org/x/sync v0.13.0 // indirect
 	golang.org/x/sys v0.32.0 // indirect
-	golang.org/x/text v0.21.0 // indirect
+	golang.org/x/text v0.24.0 // indirect
 )
