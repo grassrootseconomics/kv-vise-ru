@@ -31,6 +31,8 @@ FROM
     LEFT JOIN kv_vise v5 ON v5.key = base.base_key || '\x0015'::bytea;
 
 -- name: address-reverse-lookup
+-- Get the sessionID linked to a specific address.
+-- $1: address string
 SELECT key, value
 FROM kv_vise
 WHERE value = convert_to($1, 'UTF8');
