@@ -84,7 +84,8 @@ func (pg *Pg) GetSessionData(ctx context.Context, prefix []byte) (map[uint16][]s
 		if err := rows.Scan(&key, &value); err != nil {
 			return nil, err
 		}
-		dataType := uint16(key[len(key)-1])
+		dt, _ := data.DecodeKey(key)
+		dataType := dt
 		result[dataType] = append(result[dataType], value)
 	}
 
