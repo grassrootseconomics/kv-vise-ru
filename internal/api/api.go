@@ -57,6 +57,8 @@ func New(o APIOpts) *API {
 		}
 
 		g.GET("/lookup/address/:phone", api.addressHandler)
+		g.GET("/lookup/reverse/:address", api.reverseAddressHandler)
+		g.GET("/lookup/profile/:phone", api.profileDetailsForSMSHandler)
 	})
 
 	api.server = &http.Server{

@@ -14,7 +14,6 @@ import (
 
 	"github.com/grassrootseconomics/kv-vise-ru/internal/api"
 	"github.com/grassrootseconomics/kv-vise-ru/internal/util"
-	"github.com/grassrootseconomics/kv-vise-ru/pkg/data"
 	"github.com/grassrootseconomics/kv-vise-ru/pkg/store"
 	"github.com/knadh/koanf/v2"
 )
@@ -76,7 +75,7 @@ func main() {
 		}
 	}()
 
-	lo.Info("metrics and stats server starting", "address", data.DATA_FIRST_NAME)
+	lo.Info("metrics and stats server starting")
 
 	<-ctx.Done()
 	lo.Info("shutdown signal received")

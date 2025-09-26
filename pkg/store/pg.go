@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/grassrootseconomics/kv-vise-ru/pkg/data"
+	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/jackc/tern/v2/migrate"
 	"github.com/knadh/goyesql/v2"
@@ -31,6 +32,7 @@ type (
 		GetSessionData          string `query:"get-session-data"`
 		Get                     string `query:"get"`
 		GetProfileDetailsForSMS string `query:"get-profile-details-for-sms"`
+		AddressReverseLookup    string `query:"address-reverse-lookup"`
 	}
 )
 
@@ -125,6 +127,36 @@ func (pg *Pg) GetProfileDetailsForSMS(ctx context.Context, sessionID string) (*P
 		LanguageCode: languageCode,
 		AccountAlias: accountAlias,
 	}, nil
+}
+
+func (pg *Pg) ReverseAddress(ctx context.Context, address string) (string, error) {
+	rows, err := pg.db.Query(ctx, pg.queries.AddressReverseLookup, address)
+	if err != nil {
+		return "", err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var (
+			key   []byte
+			value []byte
+		)
+		if err := rows.Scan(&key, &value); err != nil {
+			return "", err
+		}
+		dt, sessionID := data.DecodeKey(key)
+		if sessionID == "" {
+			continue
+		}
+		if dt == data.DATA_PUBLIC_KEY {
+			return sessionID, nil
+		}
+	}
+
+	if err := rows.Err(); err != nil {
+		return "", err
+	}
+	return "", pgx.ErrNoRows
 }
 
 func loadQueries(queriesPath string) (*queries, error) {
